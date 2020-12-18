@@ -1,7 +1,7 @@
 from controller.app_controller import AppController
-from app_constants import AppConst
 main = AppController()
-main.util.prop.get_prop(AppConst.SCORPIO_RES_LOCAL_FILE)
+main.read_data_from_db()
+#main.util.prop.get_prop(AppConst.SCORPIO_RES_LOCAL_FILE)
 #main.load_gft_data_from_ftp()
 #main.load_scorpio_profile_from_ftp()
 

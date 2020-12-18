@@ -3,7 +3,7 @@ from jproperties import Properties
 class Prop(object):
 
     def __init__(self):
-        self.root = '/Users/muks/Scandic/PyCharm/sdp/'
+        self.root = '/Users/muks/Scandic/code/python_projects/sdp/'
         self.config = Properties()
 
         with open(f'{self.root}/app-config.properties', 'rb') as config_file:
