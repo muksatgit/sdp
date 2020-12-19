@@ -13,10 +13,17 @@ class AppController(object):
         self.util = Utils()
 
     def load_gft_data_from_ftp(self) -> None:
-        self.f_connector.download_file(remote_file=AppConst.SF_GFT_DATA_REMOTE_FILE, local_file=AppConst.SF_GFT_DATA_LOCAL_FILE)
+
+        _remote_file = self.util.prop.get_prop(AppConst.SF_GFT_DATA_REMOTE_FILE)
+        _local_file = self.util.prop.get_prop(AppConst.SF_GFT_DATA_LOCAL_FILE)
+
+        self.f_connector.download_file(remote_file=_remote_file, local_file=_local_file)
 
     def load_scorpio_profile_from_ftp(self) -> None:
-        self.f_connector.download_file(remote_file=AppConst.SCORPIO_PROFILE_REMOTE_FILE, local_file=AppConst.SCORPIO_PROFILE_LOCAL_FILE)
+        _remote_file = self.util.prop.get_prop(AppConst.SCORPIO_PROFILE_REMOTE_FILE)
+        _local_file = self.util.prop.get_prop(AppConst.SCORPIO_PROFILE_LOCAL_FILE)
+
+        self.f_connector.download_file(remote_file=_remote_file, local_file=_local_file)
 
     def read_data_from_db(self) -> None :
         with DBConnector() as db_connector:
@@ -28,7 +35,8 @@ class AppController(object):
                 print(record)
 
     def read_gft_csv_inset_to_db(self) -> None:
-        local_file = open(AppConst.SF_GFT_DATA_LOCAL_FILE, 'r', encoding='utf-16le')
+        _file_name = self.util.prop.get_prop(AppConst.SF_GFT_DATA_LOCAL_FILE)
+        local_file = open(_file_name, 'r', encoding='utf-16le')
         csv_data = csv.reader(local_file)
         next(csv_data, None)
         start = Utils.current_time()
@@ -48,7 +56,8 @@ class AppController(object):
         print(int(end)-int(start))
 
     def read_profile_csv_inset_to_db(self) -> None:
-        local_file = open(AppConst.SCORPIO_PROFILE_LOCAL_FILE, 'r')
+        _file_name = self.util.prop.get_prop(AppConst.SCORPIO_PROFILE_LOCAL_FILE)
+        local_file = open(_file_name, 'r')
         csv_data = csv.reader(local_file, delimiter='|')
         next(csv_data, None)
         start = Utils.current_time()
@@ -68,7 +77,8 @@ class AppController(object):
         Utils.log(end)
 
     def read_res_txt_inset_to_db(self) -> None:
-        local_file = open(AppConst.SCORPIO_RES_LOCAL_FILE, 'r')
+        _file_name = self.util.prop.get_prop(AppConst.SCORPIO_RES_LOCAL_FILE)
+        local_file = open(_file_name, 'r')
         csv_data = csv.reader(local_file, delimiter='|')
         next(csv_data, None)
         start = Utils.current_time()

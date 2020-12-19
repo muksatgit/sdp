@@ -8,7 +8,7 @@ class AppConst:
     DB_PASSWORD = 'db_password'
     DB_HOST = 'db_host'
     DB_PORT = 'db_port'
-    db_name = 'db_name'
+    DB_NAME = 'db_name'
 
     SF_GFT_DATA_REMOTE_FILE = 'sf_gft_data_remote_file'
     SF_GFT_DATA_LOCAL_FILE = 'sf_gft_data_local_file'
